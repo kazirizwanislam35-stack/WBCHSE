@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>West Bengal Council of Higher Secondary Education</title>
+<style>
+:root{--ink:#252b31;--muted:#657078;--line:#aeb8be;--blue:#315f85;--pass-bg:#e5f6e9;--pass-ink:#287342}
+*{box-sizing:border-box}
+body{margin:0;padding:16px;background:#edf3f6;color:var(--ink);font-family:Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer;padding:10px 16px;border:1px solid #aab3b8;background:#f6f7f7;color:#465159;border-radius:3px}
+button:hover{filter:brightness(.97)}
+.primary,.staff-trigger{background:var(--blue);color:white;border-color:var(--blue)}
+.topbar,.sheet,.staff{width:min(1180px,100%);margin:0 auto}
+.topbar{display:flex;justify-content:flex-end;gap:9px;margin-bottom:10px}
+.sheet,.staff{background:white;border:2px solid #87949b;padding:22px 20px;box-shadow:0 2px 10px #25333b12}
+header{text-align:center}.brand{font-size:clamp(23px,3.2vw,34px);margin:0}.sub{color:var(--muted);margin:8px}.heading{text-align:center;font-size:22px}
+.panel{border:1.5px solid var(--line);padding:22px 18px;display:flex;align-items:center;flex-direction:column;min-height:400px}
+.instruction,.example,.note{text-align:center;color:var(--muted);line-height:1.5}.example{margin-top:24px}.note{margin:25px 0}
+.form{width:min(590px,100%);border:2px solid #68747b}.formrow{display:grid;grid-template-columns:44% 56%;border-bottom:1px solid #b7c0c4;min-height:70px}.formlabel{padding:12px;display:flex;align-items:center;border-right:1px solid #b7c0c4;color:#59646b}.fields{display:flex;align-items:center;gap:10px;padding:10px}
+input{width:100%;min-width:0;height:40px;border:1.5px solid #9da9af;padding:8px;border-radius:2px}.prefix{flex:1.2}.roll{flex:.8}.actions{display:flex;justify-content:center;gap:14px;padding:18px}
+.status{text-align:center;color:var(--blue);min-height:20px;font-size:14px}.error{color:#a43b3b}.disclaimer{text-align:center;color:var(--muted);font-size:14px;line-height:1.5;margin:18px auto}.disclaimer strong{display:block;color:#333;margin-bottom:4px}
+.hidden{display:none!important}.staff h2{margin-top:0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-size:13px;color:#59646b;margin-bottom:5px}.field.full{grid-column:1/-1}
+.staff-actions{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #929da3;padding:7px;text-align:center;vertical-align:middle}th{background:#eef2f5}
+.marks{min-width:900px;margin-top:14px}.marks th{background:#315f85;color:white}.info td:first-child,.summary td:first-child{font-weight:bold;width:35%}.info td:last-child{text-align:center}.summary{margin-top:14px}.pass{color:var(--pass-ink);background:var(--pass-bg);font-weight:bold}.fail{color:#a52d35;background:#fdebed;font-weight:bold}
+.subject input{min-width:75px}.subject .type-input{min-width:112px}.subject .subject-input{min-width:130px}
+.login{max-width:400px;margin:25px auto;border:1px solid var(--line);padding:20px}.login label{display:block;margin:10px 0 5px}.login button{width:100%;margin-top:12px}.studentlist{margin-top:10px}.studentlist td,.studentlist th{text-align:left}
+.resulthead{text-align:center;margin:10px 0 18px}.resulthead h2{margin:0 0 5px}.resulthead b{letter-spacing:.4px}.unofficial{color:#765a25;text-align:center;padding:8px;margin-top:12px;font-size:12px}
+.result-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.result-actions p{margin:0;color:var(--muted);font-size:13px}.result-card{background:#fff}
+.calc-panel{margin:16px 0;padding:14px;border:1px solid #c6d0d5;background:#f7fafb}.calc-title{margin:0 0 10px;font-size:16px}.calc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.calc-item{background:#fff;border:1px solid #d7e0e4;padding:10px;text-align:center}.calc-item span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.calc-item strong{font-size:20px;font-variant-numeric:tabular-nums}.calc-grid .field{background:#fff;border:1px solid #d7e0e4;padding:10px}.calc-grid .field label{font-weight:600}.calc-grid .field input{height:42px}.helper{font-size:12px;color:var(--muted);margin:8px 0 0}
+@media(max-width:700px){.calc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){body{padding:8px}.sheet,.staff{padding:15px 10px}.panel{padding:16px 9px}.formrow{grid-template-columns:1fr}.formlabel{border-right:0;border-bottom:1px solid #ddd;min-height:40px}.fields{min-height:60px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.actions button{flex:1}.result-actions{align-items:stretch;flex-direction:column}.result-actions button{width:100%}}
+@media print{
+ @page{size:A4 landscape;margin:10mm}
+ body{padding:0!important;background:#fff!important}
+ .topbar,#home,#loginPanel,#dashboard,.result-actions{display:none!important}
+ #resultPage{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important}
+ #resultContent{display:block!important}
+ .marks{min-width:0!important;width:100%!important;font-size:10px!important}
+ table{font-size:10px!important}td,th{padding:5px!important}
+ .unofficial{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><button class="staff-trigger" id="staffBtn">Staff</button></div>
+
+<main class="sheet" id="home">
+  <header>
+    <h1 class="brand">West Bengal Council of Higher Secondary Education</h1>
+    <p class="sub">VIDYASAGAR BHAVAN, 9/2, Block-DJ, Sector-II, Salt Lake, Kolkata-700091</p>
+    <h2 class="heading">Statement of Marks of Semester-III of Higher Secondary Examination, 2027</h2>
+  </header>
+  <section class="panel">
+   
+    <p class="note"><b>Note:</b><br>Please enter your Roll No. and Registration No. as mentioned in your admit card.</p>
+    <form class="form" id="studentForm">
+      <div class="formrow"><label class="formlabel" for="rollPrefix">Enter Your Roll No.</label><div class="fields"><input class="prefix" id="rollPrefix" maxlength="6" inputmode="numeric" placeholder="Roll Prefix" required><span>No.</span><input class="roll" id="rollNumber" maxlength="4" inputmode="numeric" placeholder="Roll No." required></div></div>
+      <div class="formrow"><label class="formlabel" for="registration">Enter Your Registration No.</label><div class="fields"><input id="registration" maxlength="10" inputmode="numeric" placeholder="10-digit number" required></div></div>
+      <div class="actions"><button class="primary" type="submit">Submit</button><button type="reset">Reset</button></div>
+      <p class="status" id="studentStatus" aria-live="polite"></p>
+    </form>
+  </section>
+ <footer class="disclaimer">
+  <strong>DISCLAIMER</strong><br>
+  The results published on internet are for immediate information to the examinees.<br>
+  These cannot be treated as original mark sheets.<br>
+  Official marksheet will be issued from the School.
+</footer>
+</main>
+
+<section class="sheet hidden" id="resultPage" aria-live="polite">
+  <div class="result-actions">
+    <button id="backToPortal">Back to Student Portal</button>
+    
+    <button class="primary" id="exportPdf">Export PDF</button>
+  </div>
+  <div id="resultContent" class="result-card"></div>
+</section>
+
+<section class="staff hidden" id="loginPanel">
+  <h2>Staff Access</h2><p>Enter the staff access code to continue.</p>
+  <div class="login"><h3 style="text-align:center">Staff Login</h3><label for="staffCode">Access Code</label><input id="staffCode" type="password" inputmode="numeric" placeholder="Enter staff code"><button class="primary" id="loginBtn">Enter Staff Portal</button><p class="status" id="loginStatus" aria-live="polite"></p><button id="backLogin">Back to Student Portal</button></div>
+</section>
+
+<section class="staff hidden" id="dashboard">
+  <h2>Icon Coach — Staff Dashboard</h2><p>Manage student records. Roll number and registration number must be unique.</p>
+  <div class="staff-actions"><button id="newStudent">New Student</button><button id="backStaff">Student Portal</button><button id="logout">Log Out</button></div>
+  <div class="grid">
+    <div class="field"><label for="sName">Candidate Name</label><input id="sName"></div>
+    <div class="field"><label for="sPrefix">Roll Prefix (6 digits)</label><input id="sPrefix" maxlength="6" inputmode="numeric"></div>
+    <div class="field"><label for="sNumber">Roll Number (1–4 digits)</label><input id="sNumber" maxlength="4" inputmode="numeric"></div>
+    <div class="field"><label for="sReg">Registration Number (10 digits)</label><input id="sReg" maxlength="10" inputmode="numeric"></div>
+    <div class="field"><label for="sCode">Institution Code</label><input id="sCode"></div>
+    <div class="field"><label for="sInstitution">Institution / Coaching Name</label><input id="sInstitution" value="ICON COACH"></div>
+  </div>
+
+  <h3>Subject-wise Marks</h3>
+  <div class="tablewrap"><table class="subject"><thead><tr><th>Type</th><th>Subject</th><th>Code</th><th>Full</th><th>Pass</th><th>Obtained</th><th>Percentile (optional)</th><th></th></tr></thead><tbody id="subjectRows"></tbody></table></div>
+
+  <div class="calc-panel">
+    <h3 class="calc-title">Manual Result Summary</h3>
+    <div class="calc-grid">
+      <div class="field"><label for="manualSubjects">Total Subjects</label><input id="manualSubjects" type="number" min="0" step="1" value="0"></div>
+      <div class="field"><label for="manualObtained">Total Marks Obtained</label><input id="manualObtained" type="number" min="0" step="any" value="0"></div>
+      <div class="field"><label for="manualFull">Total Full Marks</label><input id="manualFull" type="number" min="0" step="any" value="0"></div>
+      <div class="field"><label for="manualPercentage">Overall Percentage (%)</label><input id="manualPercentage" type="number" min="0" max="100" step="any" value="0"></div>
+    </div>
+    <p class="helper">Staff must enter these four summary values manually. The portal will save and display exactly the values entered; it will not calculate or overwrite them.</p>
+  </div>
+
+  <div class="staff-actions"><button id="addSubject">Add Subject</button><button class="primary" id="saveStudent">Save Student Record</button><button id="clearForm">Clear Form</button></div>
+  <p class="status" id="staffStatus" aria-live="polite"></p>
+  <h3>Find / Edit Existing Student</h3>
+  <div class="grid"><div class="field"><label for="findRoll">Complete Roll Number</label><input id="findRoll" placeholder="Prefix + number"></div><div class="field"><label for="findReg">Registration Number</label><input id="findReg" maxlength="10"></div></div>
+  <div class="staff-actions"><button class="primary" id="findBtn">Find Student</button><button id="allBtn">Show All Students</button></div>
+  <div class="tablewrap"><table class="studentlist"><thead><tr><th>Name</th><th>Roll</th><th>Registration</th><th>Actions</th></tr></thead><tbody id="studentList"></tbody></table></div>
+  <div class="unofficial">Local demo storage only. Records remain in this browser on this device; they are not shared with other staff devices.</div>
+</section>
+
+<script>
+const KEY='iconCoachRecordsV2';
+const STAFF_CODE='897969'; // Front-end demo gate only; not secure authentication.
+const $=id=>document.getElementById(id);
+let records=[];
+let editing=null;
+try{records=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(records))records=[];}catch{records=[];}
+const saveDB=()=>localStorage.setItem(KEY,JSON.stringify(records));
+const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const roll=student=>String(student.prefix||'')+String(student.number||'');
+function status(id,message,error=false){$(id).textContent=message;$(id).classList.toggle('error',error);}
+function page(id){['home','resultPage','loginPanel','dashboard'].forEach(name=>$(name).classList.add('hidden'));$(id).classList.remove('hidden');$('staffBtn').classList.toggle('hidden',id!=='home');window.scrollTo({top:0,behavior:'auto'});}
+
+function addSubject(subject={}){
+  const row=document.createElement('tr');
+  const type=subject.type??(subject.name?'Theory':'Theory');
+  row.innerHTML=`
+    <td><input class="st type-input" placeholder="Theory / Practical" value="${esc(type)}" aria-label="Subject type"></td>
+    <td><input class="sn subject-input" placeholder="Subject" value="${esc(subject.name||'')}" aria-label="Subject name"></td>
+    <td><input class="sc" placeholder="Code" value="${esc(subject.code||'')}" aria-label="Subject code"></td>
+    <td><input class="sf" type="number" min="1" step="any" value="${subject.full??40}" aria-label="Full marks"></td>
+    <td><input class="sp" type="number" min="0" step="any" value="${subject.pass??12}" aria-label="Pass marks"></td>
+    <td><input class="so" type="number" min="0" step="any" value="${subject.obtained??''}" aria-label="Marks obtained"></td>
+    <td><input class="sx" type="number" min="0" max="100" step=".001" placeholder="Optional" value="${subject.percentile??''}" aria-label="Percentile"></td>
+    <td><button type="button" class="remove" aria-label="Remove subject">×</button></td>`;
+  row.querySelector('.remove').onclick=()=>row.remove();
+  $('subjectRows').append(row);
+}
+
+function activeSubjectRows(){
+  return [...$('subjectRows').rows].filter(row=>
+    row.querySelector('.sn').value.trim()||
+    row.querySelector('.sc').value.trim()||
+    row.querySelector('.so').value.trim()
+  );
+}
+function manualSummaryData(){
+  return {
+    totalSubjects:Number($('manualSubjects').value),
+    marksObtained:Number($('manualObtained').value),
+    totalFullMarks:Number($('manualFull').value),
+    overallPercentage:Number($('manualPercentage').value)
+  };
+}
+function setManualSummary(summary={}){
+  $('manualSubjects').value=summary.totalSubjects??0;
+  $('manualObtained').value=summary.marksObtained??0;
+  $('manualFull').value=summary.totalFullMarks??0;
+  $('manualPercentage').value=summary.overallPercentage??0;
+}
+
+function clearForm(){
+  editing=null;
+  ['sName','sPrefix','sNumber','sReg','sCode'].forEach(id=>$(id).value='');
+  $('sInstitution').value='ICON COACH';
+  $('subjectRows').innerHTML='';
+  for(let index=0;index<6;index++)addSubject();
+  setManualSummary();
+  status('staffStatus','Ready for a new student record.');
+}
+function subjectData(){
+  return activeSubjectRows().map(row=>({
+    type:row.querySelector('.st').value.trim(),
+    name:row.querySelector('.sn').value.trim(),
+    code:row.querySelector('.sc').value.trim(),
+    full:Number(row.querySelector('.sf').value),
+    pass:Number(row.querySelector('.sp').value),
+    obtained:row.querySelector('.so').value===''?NaN:Number(row.querySelector('.so').value),
+    percentile:row.querySelector('.sx').value===''?'':Number(row.querySelector('.sx').value)
+  }));
+}
+function saveStudent(){
+  try{
+    const student={
+      id:editing||('id'+Date.now()+Math.random()),
+      name:$('sName').value.trim(),
+      prefix:$('sPrefix').value.trim(),
+      number:$('sNumber').value.trim(),
+      registration:$('sReg').value.trim(),
+      institutionCode:$('sCode').value.trim(),
+      institution:$('sInstitution').value.trim(),
+      summary:manualSummaryData(),
+      subjects:subjectData()
+    };
+    if(!student.name||!/^\d{6}$/.test(student.prefix)||!/^\d{1,4}$/.test(student.number)||!/^\d{10}$/.test(student.registration)){
+      throw Error('Enter a name, 6-digit roll prefix, 1–4 digit roll number and 10-digit registration number.');
+    }
+    if(!Number.isInteger(student.summary.totalSubjects)||student.summary.totalSubjects<0||
+      !Number.isFinite(student.summary.marksObtained)||student.summary.marksObtained<0||
+      !Number.isFinite(student.summary.totalFullMarks)||student.summary.totalFullMarks<0||
+      !Number.isFinite(student.summary.overallPercentage)||student.summary.overallPercentage<0||student.summary.overallPercentage>100||
+      student.summary.marksObtained>student.summary.totalFullMarks){
+      throw Error('Enter valid manual summary values. Total subjects must be a whole number, marks cannot be negative, obtained marks cannot exceed full marks, and percentage must be between 0 and 100.');
+    }
+    if(!student.subjects.length||student.subjects.some(subject=>
+      !subject.type||!subject.name||!Number.isFinite(subject.full)||subject.full<=0||
+      !Number.isFinite(subject.pass)||subject.pass<0||subject.pass>subject.full||
+      !Number.isFinite(subject.obtained)||subject.obtained<0||subject.obtained>subject.full||
+      (subject.percentile!==''&&(!Number.isFinite(subject.percentile)||subject.percentile<0||subject.percentile>100))
+    )){
+      throw Error('Complete each started subject row. Check Type, Subject, full marks, pass marks and obtained marks. Marks must be within the allowed range.');
+    }
+    if(records.some(item=>item.id!==student.id&&(roll(item)===roll(student)||item.registration===student.registration))){
+      throw Error('That roll number or registration number is already in use.');
+    }
+    const index=records.findIndex(item=>item.id===student.id);
+    if(index<0)records.push(student);else records[index]=student;
+    saveDB();
+    render(records);
+    status('staffStatus',index<0?'Student added.':'Student updated.');
+    clearForm();
+  }catch(error){status('staffStatus',error.message||'Unable to save this record.',true);}
+}
+function edit(id){
+  const student=records.find(item=>item.id===id);
+  if(!student)return;
+  editing=id;
+  $('sName').value=student.name||'';
+  $('sPrefix').value=student.prefix||'';
+  $('sNumber').value=student.number||'';
+  $('sReg').value=student.registration||'';
+  $('sCode').value=student.institutionCode||'';
+  $('sInstitution').value=student.institution||'ICON COACH';
+  setManualSummary(student.summary||{});
+  $('subjectRows').innerHTML='';
+  (student.subjects||[]).forEach(addSubject);
+  status('staffStatus','Editing '+student.name+'. Save to apply changes.');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function remove(id){
+  const student=records.find(item=>item.id===id);
+  if(!student||!confirm('Delete record for '+student.name+'?'))return;
+  records=records.filter(item=>item.id!==id);
+  saveDB();render(records);
+  if(editing===id)clearForm();
+}
+function render(list){
+  $('studentList').innerHTML=list.map(student=>`<tr><td>${esc(student.name)}</td><td>${esc(roll(student))}</td><td>${esc(student.registration)}</td><td><button data-edit="${esc(student.id)}">Edit</button> <button data-del="${esc(student.id)}">Delete</button></td></tr>`).join('')||'<tr><td colspan="4">No student records.</td></tr>';
+  $('studentList').querySelectorAll('[data-edit]').forEach(button=>button.onclick=()=>edit(button.dataset.edit));
+  $('studentList').querySelectorAll('[data-del]').forEach(button=>button.onclick=()=>remove(button.dataset.del));
+}
+function result(student){
+  const subjects=student.subjects||[];
+  const summary=student.summary||{totalSubjects:0,marksObtained:0,totalFullMarks:0,overallPercentage:0};
+  const totalObtained=Number(summary.marksObtained)||0;
+  const totalFull=Number(summary.totalFullMarks)||0;
+  const percentage=(Number(summary.overallPercentage)||0).toFixed(2);
+  const rows=subjects.map(item=>{
+    const itemPercent=Number(item.full)>0?(100*Number(item.obtained)/Number(item.full)).toFixed(2):'0.00';
+    const itemPassed=Number(item.obtained)>=Number(item.pass);
+    return `<tr>
+      <td>${esc(item.type||'Theory')}</td>
+      <td>${esc(item.name)}</td>
+      <td>${esc(item.code||'—')}</td>
+      <td>${Number(item.full)||0}</td>
+      <td>${Number(item.pass)||0}</td>
+      <td>${Number(item.obtained)||0}</td>
+      <td>${itemPercent}</td>
+      <td>${item.percentile===''||item.percentile==null?'—':Number(item.percentile).toFixed(3)}</td>
+      <td class="${itemPassed?'pass':'fail'}">${itemPassed?'PASS':'FAIL'}</td>
+    </tr>`;
+  }).join('');
+  $('resultContent').innerHTML=`
+    <div class="resulthead">
+  <h2>West Bengal Council of Higher Secondary Education</h2>
+  <b>VIDYASAGAR BHAVAN, 9/2, Block-DJ, Sector-II, Salt Lake, Kolkata-700091</b><br>
+  <b>Statement of Marks of Semester-III of Higher Secondary Examination, 2026</b>
+  <div style="font-size:12px;color:#657078;margin-top:4px"></div>
+</div>
+    <div class="tablewrap">
+      <table class="info">
+        <tr><td>Candidate Name</td><td>${esc(student.name)}</td></tr>
+        <tr><td>Roll No.</td><td>${esc(roll(student))}</td></tr>
+        <tr><td>Registration No.</td><td>${esc(student.registration)}</td></tr>
+        <tr><td>Institution Code</td><td>${esc(student.institutionCode||'—')}</td></tr>
+        <tr><td>Institution Name</td><td>${esc(student.institution||'ICON COACH')}</td></tr>
+      </table>
+      <table class="marks">
+        <thead><tr><th>Type</th><th>Subject</th><th>Subject Code</th><th>Full Marks</th><th>Pass Marks</th><th>Marks Obtained</th><th>Percentage (%)</th><th>Percentile</th><th>Subject Result</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <table class="summary">
+        <tr><td>Marks Obtained</td><td>${totalObtained}</td></tr>
+        <tr><td>Full Marks</td><td>${totalFull}</td></tr>
+        <tr><td>Percentage</td><td>${percentage}%</td></tr>
+      </table>
+    </div>
+    <div class="unofficial"></div>`;
+  page('resultPage');
+}
+
+$('staffBtn').onclick=()=>{page('loginPanel');$('staffCode').value='';status('loginStatus','');};
+$('loginBtn').onclick=()=>{if($('staffCode').value===STAFF_CODE){page('dashboard');render(records);clearForm();}else status('loginStatus','Incorrect staff access code.',true);};
+$('staffCode').onkeydown=event=>{if(event.key==='Enter')$('loginBtn').click();};
+$('backLogin').onclick=$('backStaff').onclick=$('logout').onclick=()=>page('home');
+$('backToPortal').onclick=()=>{$('studentForm').reset();status('studentStatus','');page('home');};
+$('exportPdf').onclick=()=>window.print();
+$('newStudent').onclick=$('clearForm').onclick=clearForm;
+$('addSubject').onclick=()=>addSubject();
+$('saveStudent').onclick=saveStudent;
+$('findBtn').onclick=()=>{
+  const searchedRoll=$('findRoll').value.trim();
+  const searchedRegistration=$('findReg').value.trim();
+  const found=records.filter(student=>(searchedRoll&&roll(student)===searchedRoll)||(searchedRegistration&&student.registration===searchedRegistration));
+  render(found);status('staffStatus',found.length+' matching record(s).',!found.length);
+};
+$('allBtn').onclick=()=>{render(records);status('staffStatus',records.length+' student record(s).');};
+$('studentForm').onsubmit=event=>{
+  event.preventDefault();
+  const prefix=$('rollPrefix').value.trim();
+  const number=$('rollNumber').value.trim();
+  const registration=$('registration').value.trim();
+  const student=records.find(item=>item.prefix===prefix&&item.number===number&&item.registration===registration);
+  if(student){status('studentStatus','');result(student);}
+  else status('studentStatus','No matching Icon Coach record found. Check your details or contact staff.',true);
+};
+$('studentForm').onreset=()=>setTimeout(()=>status('studentStatus',''),0);
+
+clearForm();
+page('home');
+</script>
+</body>
+</html>
